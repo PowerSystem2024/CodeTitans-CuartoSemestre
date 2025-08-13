@@ -12,7 +12,7 @@ class Conexion {
     +obtenerPool(cls): Pool
     +obtenerConexion(cls): Connection
     +liberarConexion(cls, conexion)
-    +cerrarConexiones(cls)
+    +cerrarConexion(cls)
 
     ..
     // Responsabilidades
@@ -22,8 +22,8 @@ class Conexion {
 }
 
 class CursorDelPool {
-    -conn: String
-    -cursor: String
+    -conexion: Connection
+    -cursor: Cursor
     +__init__(self)
     +__enter__(self)
     +__exit__(self)
@@ -36,15 +36,17 @@ class CursorDelPool {
 }
 
 class UsuarioDao {
-    -SELECCIONAR: String
-    -INSERTAR: String
-    -ACTUALIZAR: String
-    -ELIMINAR: String
+    -_SELECCIONAR: String
+    -_SELECCIONAR_ID: String
+    -_INSERTAR: String
+    -_ACTUALIZAR: String
+    -_ELIMINAR: String
 
     +seleccionar(cls): List<Usuario>
-    +insertar(cls, usuario)
-    +actualizar(cls, usuario)
-    +eliminar(cls, usuario)
+    +seleccionar_por_id(cls, id_usuario): Usuario
+    +insertar(cls, usuario): Usuario
+    +actualizar(cls, usuario): int
+    +eliminar(cls, usuario): int
 
     ..
     // Responsabilidades
@@ -53,12 +55,14 @@ class UsuarioDao {
 }
 
 class Usuario {
-    -id_usuario: int
-    -username: String
-    -password: String
+    -_id_usuario: int
+    -_username: String
+    -_password: String
 
     +__str__(): String
-    +get/set de cada atributo
+    +id_usuario: property
+    +username: property
+    +password: property
 
     ..
     // Responsabilidades
@@ -67,11 +71,13 @@ class Usuario {
 }
 
 class MenuAppUsuario {
-    +listarUsuarios()
-    +agregarUsuario()
-    +actualizarUsuario()
-    +eliminarUsuario()
-    +salir()
+    +mostrar_menu()
+    +obtener_opcion()
+    +listar_usuarios()
+    +listar_usuario_por_id()
+    +agregar_usuario()
+    +actualizar_usuario()
+    +eliminar_usuario()
 
     ..
     // Responsabilidades
@@ -84,6 +90,10 @@ class MenuAppUsuario {
     ..
 }
 
+class DatosInvalidosError {
+    +validar_datos(nombre: str, password: str)
+}
+
 class logger_base {
     +logger: logging
 
@@ -92,8 +102,20 @@ class logger_base {
     //Configuracion de loggin para
     //toda la aplicación
 }
+
+class init_db {
+    +crear_tabla_usuario()
+}
+
 Conexion --> CursorDelPool
-CursorDelPool --> UsuarioDao
-Usuario --> UsuarioDao 
-Usuario --> MenuAppUsuario 
+CursorDelPool --> UsuarioDAO
+UsuarioDAO --> Usuario
+UsuarioDAO --> logger_base
+UsuarioDAO --> CursorDelPool
+menu_app_usuario --> UsuarioDAO
+menu_app_usuario --> Usuario
+menu_app_usuario --> logger_base
+menu_app_usuario --> DatosInvalidosError
+init_db --> CursorDelPool
+init_db --> logger_base
 @enduml
