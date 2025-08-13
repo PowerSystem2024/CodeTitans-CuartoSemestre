@@ -3,18 +3,25 @@ from usuario import Usuario
 from logger_base import log 
 from utils import DatosInvalidosError
 from init_db import crear_tabla_usuario
+import os
 crear_tabla_usuario()
 
 class menu_app_usuario:
 
     @staticmethod
     def mostrar_menu():
+        print()
+        print("="*40)
+        print("         MENÚ DE USUARIOS")
+        print("="*40)
         print("1. Listar usuario")
         print("2. Listar usuario por id")
         print("3. Agregar usuario")
         print("4. Actualizar usuario")
         print("5. Eliminar usuario")
         print("6. Salir")
+        print("="*40)
+        print()
 
     @staticmethod
     def obtener_opcion():
@@ -45,8 +52,9 @@ class menu_app_usuario:
     def agregar_usuario():
         try:
             nombre = input("Ingrese el nombre del usuario: ")
+            DatosInvalidosError.validar_datos(nombre, None)
             password = input("Ingrese la contraseña del usuario: ")
-            DatosInvalidosError.validar_datos(nombre, password)
+            DatosInvalidosError.validar_datos(None, password)
             usuario = Usuario(None, nombre, password)
             UsuarioDAO.insertar(usuario)
             log.info("Usuario agregado exitosamente.")
@@ -58,8 +66,9 @@ class menu_app_usuario:
         try:
             id_usuario = int(input("Ingrese el ID del usuario a actualizar: "))
             nombre = input("Ingrese el nuevo nombre del usuario: ")
+            DatosInvalidosError.validar_datos(nombre, None)
             password = input("Ingrese la nueva contraseña del usuario: ")
-            DatosInvalidosError.validar_datos(nombre, password)
+            DatosInvalidosError.validar_datos(None, password)
             usuario = Usuario(id_usuario, nombre, password)
             UsuarioDAO.actualizar(usuario)
             log.info("Usuario actualizado exitosamente.")

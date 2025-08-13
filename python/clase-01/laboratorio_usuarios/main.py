@@ -1,5 +1,5 @@
 from menu_app_usuario import menu_app_usuario
-import logger_base as log
+from logger_base import log
 
 def main():
     while True:
