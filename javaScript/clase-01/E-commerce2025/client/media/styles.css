@@ -1,0 +1,51 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: black;
+  color: #ffffff;
+}
+
+.title {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.card-products-container {
+  margin: 0 auto;
+}
+
+.card-products {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.card-products img {
+  margin-top: 40px;
+  width: 250px;
+  height: 250px;
+}
+
+.card-products button {
+  border: none;
+  outline: 0;
+  padding: 10px;
+  color: azure;
+  background-color: #0d6efd;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+.card-products button:hover {
+  opacity: 0.8;
+}
