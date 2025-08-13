@@ -27,11 +27,31 @@ body {
   align-items: center;
   flex-wrap: wrap;
 }
+.card-products div {
+  background-color: #1a1a1a;
+  border-radius: 8px;
+  margin: 10px;
+  padding: 5px;
+  box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+}
 
 .card-products img {
   margin-top: 40px;
   width: 250px;
   height: 250px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.card-products h2 {
+  color: #ffffff;
+  margin: 10px 0;
+  font-size: 1.2em;
+}
+
+.card-products p {
+  color: #cccccc; /* Gris claro para mejor legibilidad */
+  margin: 5px 0;
 }
 
 .card-products button {

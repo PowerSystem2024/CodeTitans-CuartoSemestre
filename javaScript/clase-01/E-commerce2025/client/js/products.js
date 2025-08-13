@@ -25,7 +25,7 @@ const products = [
     productName: "Notebook HP 15s-eq2025la",
     price: 150000,
     quantity: 5,
-    img: "../media/assets/NotebookHP.png",
+    img: "../media/assets/NoteHP15.jpg",
   },
   {
     id: 5,
