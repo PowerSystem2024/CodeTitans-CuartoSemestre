@@ -7,7 +7,7 @@ class UsuarioDAO:
 
     _SELECCIONAR = "SELECT * FROM usuario ORDER BY id_persona"
     _SELECCIONAR_ID = "SELECT * FROM usuario WHERE id_persona = %s"
-    _INSERTAR = "INSERT INTO usuario(username, password) VALUES(%s, %s)"
+    _INSERTAR = "INSERT INTO usuario(username, password) VALUES(%s, %s) RETURNING id_persona"
     _ACTUALIZAR = "UPDATE usuario SET username = %s, password = %s WHERE id_persona = %s"   
     _ELIMINAR = "DELETE FROM usuario WHERE id_persona = %s"
 
