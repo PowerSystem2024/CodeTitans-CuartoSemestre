@@ -6,8 +6,8 @@ products.forEach((product) => {
   productCard.innerHTML = `
     <img src="${product.img}" />
     <h2>${product.productName}</h2>
-    <p>Price: $${product.price}</p>
-    <p>Quantity: ${product.quantity}</p>
+    <p>Precio: $${product.price}</p>
+    <p>Cantidad: ${product.quantity} U.</p>
   `;
   shopContent.append(productCard);
 });
