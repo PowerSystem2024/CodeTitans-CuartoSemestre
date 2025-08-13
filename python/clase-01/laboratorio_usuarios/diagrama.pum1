@@ -1,0 +1,99 @@
+@startuml
+class Conexion {
+    -DATABASE: string
+    -USERNAME: string
+    -PASSWORD: string
+    -DB_PORT: string
+    -HOST: string
+    -MIN_CON: int
+    -MAX_CON: int
+    -pool: Pool
+
+    +obtenerPool(cls): Pool
+    +obtenerConexion(cls): Connection
+    +liberarConexion(cls, conexion)
+    +cerrarConexiones(cls)
+
+    ..
+    // Responsabilidades
+    // Gestionar el pool de conexiones a la base de datos.
+    // Proveer métodos para obtener, liberar y cerrar conexiones.
+    ..
+}
+
+class CursorDelPool {
+    -conn: String
+    -cursor: String
+    +__init__(self)
+    +__enter__(self)
+    +__exit__(self)
+
+    ..
+    // Responsabilidades
+    // Administrar el objeto conexión y cursor obtenidos a partir del pool de conexiones.
+    // Implementar el uso de 'with' para trabajar con el cursor.
+    ..
+}
+
+class UsuarioDao {
+    -SELECCIONAR: String
+    -INSERTAR: String
+    -ACTUALIZAR: String
+    -ELIMINAR: String
+
+    +seleccionar(cls): List<Usuario>
+    +insertar(cls, usuario)
+    +actualizar(cls, usuario)
+    +eliminar(cls, usuario)
+
+    ..
+    // Responsabilidades
+    // Realizar las operaciones CRUD (Create-Read-Update-Delete) sobre la entidad Usuario (tabla usuario)
+    ..
+}
+
+class Usuario {
+    -id_usuario: int
+    -username: String
+    -password: String
+
+    +__str__(): String
+    +get/set de cada atributo
+
+    ..
+    // Responsabilidades
+    // Crear objetos de entidad Usuario
+    ..
+}
+
+class MenuAppUsuario {
+    +listarUsuarios()
+    +agregarUsuario()
+    +actualizarUsuario()
+    +eliminarUsuario()
+    +salir()
+
+    ..
+    // Responsabilidades
+    // Contiene un menú con 5 opciones:
+    // 1) Listar usuario
+    // 2) Agregar usuario
+    // 3) Actualizar usuario
+    // 4) Eliminar usuario
+    // 5) Salir
+    ..
+}
+
+class logger_base {
+    +logger: logging
+
+    ..
+    //Responsabilidades
+    //Configuracion de loggin para
+    //toda la aplicación
+}
+Conexion --> CursorDelPool
+CursorDelPool --> UsuarioDao
+Usuario --> UsuarioDao 
+Usuario --> MenuAppUsuario 
+@enduml
