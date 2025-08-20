@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <title>La Leyenda de Aang El Avatar</title>
+  </head>
+  <body>
+    <h1><img src="assets/fire.png" alt="Fuego" id="h1-img"> <img src="assets/water.png" alt="Agua" id="h1-img">AVATAR <img src="assets/earth.png" alt="Tierra" id="h1-img"><img src="assets/wind.png" alt="Viento" id="h1-img"></h1>
+
+    <!-- Sección Inicio -->
+    <section id="inicio">
+      <button id="btn-jugar">Jugar</button>
+      <button id="btn-reglas" onclick="toggleReglas()">
+        📋 Ver Reglas del Juego
+      </button>
+      <div id="contenido-reglas" style="display: none">
+        <h3>🎮 Reglas del Juego:</h3>
+        <ol>
+          <li>
+            <strong>Primer paso:</strong> Selecciona tu personaje favorito
+            (Zuko, Katara, Toph o Aang)
+          </li>
+          <li>
+            <strong>Vidas:</strong> Tanto vos como el enemigo tienen 3 vidas
+          </li>
+          <li>
+            <strong>Combate:</strong> Elige tu ataque y el enemigo elegirá uno
+            aleatorio
+          </li>
+        </ol>
+        <h4>⚔️ Reglas de combate:</h4>
+        <ul>
+          <li>
+            👊 <strong>Puño</strong> le gana a 🤼‍♂️ <strong>Barrida</strong>
+          </li>
+          <li>🦿 <strong>Patada</strong> le gana a 👊 <strong>Puño</strong></li>
+          <li>
+            🤼‍♂️ <strong>Barrida</strong> le gana a 🦿 <strong>Patada</strong>
+          </li>
+          <li>🤝 Si ambos eligen lo mismo = <strong>EMPATE</strong></li>
+        </ul>
+        <p><strong>Que gane el mejor Titan!</strong></p>
+      </div>
+    </section>
+
+    <section class="seleccionar-personaje" id="seleccionar-personaje">
+      <h2>Elige tu personaje</h2>
+      <div class="personajes">
+    <button class="personaje" data-personaje="zuko">
+      <img src="/assets/zuko.webp" alt="Zuko" />
+      <span>Zuko</span>
+    </button>
+
+    <button class="personaje" data-personaje="katara">
+      <img src="assets/katara.webp" alt="Katara" />
+      <span>Katara</span>
+    </button>
+
+    <button class="personaje" data-personaje="toph">
+      <img src="assets/toph.webp" alt="Toph" />
+      <span>Toph</span>
+    </button>
+
+    <button class="personaje" data-personaje="aang">
+      <img src="assets/aang.webp" alt="Aang" />
+      <span>Aang</span>
+    </button>
+  </div>
+      <button id="btn-personaje">Seleccionar</button>
+    </section>
+
+    <section id="seleccionar-ataque">
+      <h2>Elige tu ataque</h2>
+      <div id="mostrar-elegidos">
+        <div id="row-personajes">
+           <div id="personaje-jugador"></div>
+           <div id="personaje-enemigo"></div>
+        </div>
+        <div id="row-vidas">
+          <p>
+          <span id="vidas-jugador">3</span> Vidas
+        </p>
+        
+        <p>
+          <span id="vidas-enemigo">3</span> Vidas
+        </p>
+        </div>
+        
+        <p>
+      </div>
+      Elige un ataque:
+      <br />
+      <div id="mostrar-ataque">
+        <button id="btn-puño">Puño 👊🏼</button>
+        <button id="btn-patada">Patada 🦿</button>
+        <button id="btn-barrida">Barrida 🤼‍♂️</button>
+      </div>
+      </p>
+    </section>
+
+    <!-- Mensaje dinamico -->
+    <section id="mensajes">
+      <p></p>
+    </section>
+
+    <section id="reiniciar">
+      <button id="btn-reiniciar">Reiniciar</button>
+    </section>
+    <script src="./js/avatar.js"></script>
+  </body>
+</html>
