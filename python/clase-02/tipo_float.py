@@ -8,8 +8,14 @@ a = float("10")  # Le pasamos un tipo cadena (str)
 print(f"a = {a: .2f}")  # Imprime con dos decimales
 
 # Notacion exponencial (valores positivos o negativos)
-a = 1.5e2
-print(f"a = {a: .2e}")
+a = 3e5
+print(f"a = {a: .2f}")
 
-a = -2.5e-3
-print(f"a = {a: .2e}")
+a = 3e-5
+print(f"a = {a: .5f}")
+
+
+# Cualquier calculo que incluye un float, todo cambia a float
+a = 4.0 + 2
+print(a)
+print(type(a))
