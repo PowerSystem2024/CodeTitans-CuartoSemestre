@@ -1,0 +1,252 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Fuente */
+body {
+  font-family: "Poppins", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #fff;
+  background: linear-gradient(135deg, #ff7e5f, #76b2fe, #43e97b, #f8ffae);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  min-height: 100vh;
+  gap: 30px;
+  text-align: center;
+}
+
+/* Animación para el fondo */
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* H1 principal */
+h1 {
+  color: #ffe082;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 20px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 600px;
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  animation: brillo 2s infinite alternate;
+}
+
+@keyframes brillo {
+  from {
+    color: #ffe082; /* color original */
+  }
+  to {
+    color: #e6c46b; /* un poco más oscuro */
+  }
+}
+#h1-img{
+  max-height: 40px;
+  margin: 0 15px;
+}
+
+/* Subtítulos */
+h2 {
+  font-size: 2rem;
+  margin: 15px 0;
+  color: #ffe082;
+}
+
+h3, h4 {
+  color: #ffd54f;
+  margin: 10px 0;
+}
+
+/* Botones */
+button {
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  border-radius: 8px;
+  background: #333;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.3s;
+}
+
+button:hover {
+  background: #555;
+  transform: scale(1.05);
+}
+
+/* Secciones */
+section {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 20px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 600px;
+}
+
+/* Inputs de selección */
+label {
+  margin: 0 10px;
+  font-weight: bold;
+}
+
+input[type="radio"] {
+  margin: 0 10px;
+}
+
+/* Flexbox para botones */
+#inicio button,
+#seleccionar-ataque button {
+  display: block;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+#inicio {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#mostrar-elegidos{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+  gap: 20px;
+}
+
+#row-personajes, #row-vidas{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 0px 20px;
+  padding: auto;
+  gap: 20px;
+}
+
+
+#mostrar-ataque{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.5rem;
+    width: 90%;
+  }
+  #h1-img{
+  max-height: 24px;
+}
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  section {
+    width: 90%;
+  }
+
+  button {
+    width: 100%;
+  }
+}
+
+/* Efecto hover */
+.personaje:hover {
+  transform: scale(1.05);
+  border: 2px solid #ffe082;
+}
+
+/* Estado seleccionado */
+.personaje.seleccionado {
+  border: 2px solid #ffca28;
+  background: rgba(255, 255, 255, 0.1);
+} 
+
+.personajes {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-items: center;
+  margin: 20px 0px;
+}
+
+.personaje {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.6);
+  border: 2px solid transparent;
+  border-radius: 12px;
+  padding: 15px;
+  cursor: pointer;
+  transition: transform 0.2s, border 0.3s;
+  width: 120px;
+}
+
+.personaje img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-bottom: 8px;
+}
+
+.personaje span {
+  font-weight: bold;
+  color: #ffe082;
+}
+
+/* Hover */
+.personaje:hover {
+  transform: scale(1.05);
+  border: 2px solid #ffe082;
+}
+
+/* Seleccionado */
+.personaje.seleccionado {
+  border: 2px solid #ffca28;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+
+/* --- Media Queries --- */
+
+/* Tablet: 2 columnas */
+@media (max-width: 1024px) {
+  .personajes {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Móvil: 1 columna */
+@media (max-width: 600px) {
+  .personajes {
+    grid-template-columns: 1fr;
+  }
+
+  .personaje {
+    width: 100%; /* que ocupe todo el ancho en móvil */
+    max-width: 300px;
+  }
+}
