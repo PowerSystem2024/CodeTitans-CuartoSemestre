@@ -36,7 +36,8 @@ const displayCart = () => {
   cart.forEach((product) => {
     const modalBody = document.createElement("div");
     modalBody.className = "modal-body";
-    modalBody.innerHTML = `<div class="product-img">
+    modalBody.innerHTML = `
+    <div class="product">
       <img class="product-img" src="${product.img}" />
       <div class="product-info">
         <h4>${product.productName}</h4>
@@ -54,6 +55,16 @@ const displayCart = () => {
     `;
     modalContainer.append(modalBody);
   });
+  //Modal Footer
+  const modalFooter = document.createElement("div");
+  modalFooter.className = "modal-footer";
+  modalFooter.innerHTML = `
+    <div class="total-price">Total: ${cart.reduce(
+      (acc, item) => acc + item.price * item.quantity,
+      0
+    )}</div>
+  `;
+  modalContainer.append(modalFooter);
 };
 //Cuando el usuario apriete este btn de va a disparar la funcion displayCart
 cartBtn.addEventListener("click", displayCart);
