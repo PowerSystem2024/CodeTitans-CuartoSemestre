@@ -125,3 +125,95 @@ body {
   margin-bottom: 10px;
   text-align: center;
 }
+
+/* Modal Body */
+.modal-body {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.product {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #444;
+  padding-bottom: 10px;
+}
+
+.product-img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.product-info {
+  flex-grow: 1;
+  text-align: left;
+  margin-left: 10px;
+}
+
+.product-info h4 {
+  margin-top: 35px;
+}
+
+.quantity {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  margin-right: 4rem;
+}
+
+.quantity-btn-decrease,
+.quantity-btn-increase {
+  background-color: rgb(0, 70, 221);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.quantity-btn-decrease:hover,
+.quantity-btn-increase:hover {
+  background-color: rgb(0, 50, 170);
+}
+
+.quantity-input {
+  border: 1px solid #ccc;
+  padding: 5px;
+  width: 40px;
+  text-align: center;
+  border-radius: 4px;
+}
+
+@media only screen and (max-width: 500px) {
+  .product-img {
+    display: none;
+  }
+  .modal-body {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  .price {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+  .delete-product {
+    margin-top: 20px;
+    margin-left: 2rem;
+    cursor: pointer;
+  }
+  .modal-footer {
+    text-align: center;
+  }
+  .total-price {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+}
