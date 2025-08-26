@@ -4,7 +4,6 @@
   box-sizing: border-box;
 }
 
-/* Fuente */
 body {
   font-family: "Poppins", Arial, sans-serif;
   font-size: 16px;
@@ -30,7 +29,6 @@ body {
   100% { background-position: 0% 50%; }
 }
 
-/* H1 principal */
 h1 {
   color: #ffe082;
   background: rgba(0, 0, 0, 0.4);
@@ -48,10 +46,10 @@ h1 {
 
 @keyframes brillo {
   from {
-    color: #ffe082; /* color original */
+    color: #ffe082; 
   }
   to {
-    color: #e6c46b; /* un poco más oscuro */
+    color: #e6c46b; 
   }
 }
 #h1-img{
@@ -59,7 +57,6 @@ h1 {
   margin: 0 15px;
 }
 
-/* Subtítulos */
 h2 {
   font-size: 2rem;
   margin: 15px 0;
@@ -71,7 +68,6 @@ h3, h4 {
   margin: 10px 0;
 }
 
-/* Botones */
 button {
   padding: 10px 20px;
   margin: 5px;
@@ -88,7 +84,6 @@ button:hover {
   transform: scale(1.05);
 }
 
-/* Secciones */
 section {
   background: rgba(0, 0, 0, 0.4);
   padding: 20px;
@@ -97,17 +92,7 @@ section {
   max-width: 600px;
 }
 
-/* Inputs de selección */
-label {
-  margin: 0 10px;
-  font-weight: bold;
-}
 
-input[type="radio"] {
-  margin: 0 10px;
-}
-
-/* Flexbox para botones */
 #inicio button,
 #seleccionar-ataque button {
   display: block;
@@ -151,6 +136,7 @@ input[type="radio"] {
 }
 
 /* Responsive */
+
 @media (max-width: 768px) {
   h1 {
     font-size: 1.5rem;
@@ -231,8 +217,6 @@ input[type="radio"] {
 
 
 /* --- Media Queries --- */
-
-/* Tablet: 2 columnas */
 @media (max-width: 1024px) {
   .personajes {
     grid-template-columns: repeat(2, 1fr);
