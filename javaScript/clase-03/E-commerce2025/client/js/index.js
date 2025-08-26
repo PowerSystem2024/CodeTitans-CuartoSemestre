@@ -18,13 +18,23 @@ products.forEach((product) => {
   productCard.append(buyButton);
 
   buyButton.addEventListener("click", () => {
-    cart.push({
-      id: product.id,
-      name: product.productName,
-      price: product.price,
-      img: product.img,
-      quantity: 1,
-    });
+    const repeat = cart.some(
+      (repeatProduct) => repeatProduct.id === product.id
+    );
+    if (repeat) {
+      cart.map((prod) => {
+        if (prod.id === product.id) {
+          prod.quantity++;
+        }
+      });
+    } else
+      cart.push({
+        id: product.id,
+        name: product.productName,
+        price: product.price,
+        img: product.img,
+        quantity: product.quantity,
+      });
     console.log(cart);
   });
 });
