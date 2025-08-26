@@ -5,6 +5,22 @@ const btnPatada = document.getElementById("btn-patada");
 const btnBarrida = document.getElementById("btn-barrida");
 const btnReiniciar = document.getElementById("btn-reiniciar");
 
+//Constantes Globales Funcion ToggleReglas
+const contenidoReglas = document.getElementById("contenido-reglas");
+const btnReglas = document.getElementById("btn-reglas");
+
+//Variables Globales Selecciones de Ataque y Personaje
+let inicio = document.getElementById("inicio")
+let seleccionarPersonaje = document.getElementById("seleccionar-personaje")
+let seleccionarAtaque = document.getElementById("seleccionar-ataque")
+let mensajes = document.getElementById("mensajes")
+let reiniciar = document.getElementById("reiniciar")
+
+//Arrays de Personajes
+const personajes = ["Zuko", "Katara", "Toph", "Aang"];
+//Arrays de Ataques
+const ataques = ["puño", "patada", "barrida"];
+
 // Variables para el conteo
 let triunfos = 0;
 let derrotas = 0;
@@ -14,10 +30,31 @@ let juegoTerminado = false; // para controlar el estado del juego
 let personajeSeleccionado = ""; // guardamos el personaje elegido
 
 
+// Eventos
+btnJugar.addEventListener("click", iniciarJuego);
+btnPersonajeJugador.addEventListener("click", seleccionarPersonajeJugador);
+btnPuño.addEventListener("click", ataquePuño);
+btnPatada.addEventListener("click", ataquePatada);
+btnBarrida.addEventListener("click", ataqueBarrida);
+btnReiniciar.addEventListener("click", reiniciarJuego);
+
+// Eventos para seleccionar personaje con botones
+const botonesPersonaje = document.querySelectorAll(".personaje");
+botonesPersonaje.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    // quitar selección previa
+    botonesPersonaje.forEach((b) => b.classList.remove("seleccionado"));
+    // marcar el nuevo
+    btn.classList.add("seleccionado");
+    personajeSeleccionado = btn.dataset.personaje;
+    console.log("Personaje elegido:", personajeSeleccionado);
+  });
+});
+window.onload = reiniciarJuego()
+
+
 // Función para mostrar/ocultar reglas
 function toggleReglas() {
-  const contenidoReglas = document.getElementById("contenido-reglas");
-  const btnReglas = document.getElementById("btn-reglas");
   
   if (contenidoReglas.style.display === "none") {
     contenidoReglas.style.display = "block";
@@ -30,41 +67,36 @@ function toggleReglas() {
 
 // Función para iniciar el juego (mostrar selección de personaje)
 function iniciarJuego() {
-  document.getElementById("inicio").style.display = "none";
-  document.getElementById("seleccionar-personaje").style.display = "block";
-  document.getElementById("seleccionar-ataque").style.display = "none";
-  document.getElementById("mensajes").style.display = "none";
-  document.getElementById("reiniciar").style.display = "none";
+  inicio.style.display = "none";
+  seleccionarPersonaje.style.display = "block";
+  seleccionarAtaque.style.display = "none";
+  mensajes.style.display = "none";
+  reiniciar.style.display = "none";
 }
 
 // Función para mostrar la sección de ataques
 function mostrarSeccionAtaques() {
-  document.getElementById("inicio").style.display = "none";
-  document.getElementById("seleccionar-personaje").style.display = "none";
-  document.getElementById("seleccionar-ataque").style.display = "block";
-  document.getElementById("mensajes").style.display = "block";
-  document.getElementById("reiniciar").style.display = "none";
+  inicio.style.display = "none";
+  seleccionarPersonaje.style.display = "none";
+  seleccionarAtaque.style.display = "block";
+  mensajes.style.display = "block";
+  reiniciar.style.display = "none";
 }
 
 // Función para mostrar botón reiniciar cuando termina el juego
 function mostrarReiniciar() {
-  document.getElementById("reiniciar").style.display = "block";
+  reiniciar.style.display = "block";
 }
 
 // Función para elegir aleatoriamente el personaje del enemigo
 function aleatoria() {
-  const personajes = ["Zuko", "Katara", "Toph", "Aang"];
-  const indiceAleatorio = Math.floor(Math.random() * personajes.length);
-  return personajes[indiceAleatorio];
+  return personajes[(Math.floor(Math.random() * personajes.length))];
 }
 
 // Función para elegir ataque aleatorio del enemigo
 function ataqueAleatorioEnemigo() {
-  const ataques = ["puño", "patada", "barrida"];
-  const indiceAleatorio = Math.floor(Math.random() * ataques.length);
-  return ataques[indiceAleatorio];
+  return ataques[(Math.floor(Math.random() * ataques.length))];
 }
-
 
 function combate(ataqueJugador, ataqueEnemigo) {
   if (juegoTerminado) {
@@ -126,8 +158,6 @@ function mostrarMensajeFinal(mensaje) {
   mostrarReiniciar();
 }
 
-
-
 function seleccionarPersonajeJugador() {
   if (personajeSeleccionado === "") {
     alert("Debes seleccionar un personaje");
@@ -153,7 +183,6 @@ function seleccionarPersonajeJugador() {
   
   mostrarSeccionAtaques();
 }
-
 
 //Funcion para manejar ataques
 function ataque(tipoAtaque) {
@@ -215,24 +244,3 @@ document.getElementById("mensajes").style.display = "none";
 document.getElementById("reiniciar").style.display = "none";
 }
 
-// Eventos
-btnJugar.addEventListener("click", iniciarJuego);
-btnPersonajeJugador.addEventListener("click", seleccionarPersonajeJugador);
-btnPuño.addEventListener("click", ataquePuño);
-btnPatada.addEventListener("click", ataquePatada);
-btnBarrida.addEventListener("click", ataqueBarrida);
-btnReiniciar.addEventListener("click", reiniciarJuego);
-
-// 👉 Nuevo: eventos para seleccionar personaje con botones
-const botonesPersonaje = document.querySelectorAll(".personaje");
-botonesPersonaje.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    // quitar selección previa
-    botonesPersonaje.forEach((b) => b.classList.remove("seleccionado"));
-    // marcar el nuevo
-    btn.classList.add("seleccionado");
-    personajeSeleccionado = btn.dataset.personaje;
-    console.log("Personaje elegido:", personajeSeleccionado);
-  });
-});
-window.onload = reiniciarJuego()
