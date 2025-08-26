@@ -30,7 +30,7 @@ products.forEach((product) => {
     } else
       cart.push({
         id: product.id,
-        name: product.productName,
+        productName: product.productName,
         price: product.price,
         img: product.img,
         quantity: product.quantity,

@@ -68,6 +68,16 @@ const displayCart = () => {
       product.quantity++;
       displayCart();
     });
+
+    //Boton para eliminar un articulo del carrito
+    const btnDelete = modalBody.querySelector(".delete-product");
+    btnDelete.addEventListener("click", () => {
+      const index = cart.findIndex((item) => item.id === product.id);
+      if (index !== -1) {
+        cart.splice(index, 1);
+        displayCart();
+      }
+    });
   });
   //Modal Footer
   const modalFooter = document.createElement("div");
