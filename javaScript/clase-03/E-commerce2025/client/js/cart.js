@@ -54,6 +54,20 @@ const displayCart = () => {
       </div>
     `;
     modalContainer.append(modalBody);
+    //Boton para restar y sumar articulos al carrito
+    const btnDecrease = modalBody.querySelector(".quantity-btn-decrease");
+    btnDecrease.addEventListener("click", () => {
+      if (product.quantity > 1) {
+        product.quantity--;
+        displayCart();
+      }
+    });
+
+    const btnIncrease = modalBody.querySelector(".quantity-btn-increase");
+    btnIncrease.addEventListener("click", () => {
+      product.quantity++;
+      displayCart();
+    });
   });
   //Modal Footer
   const modalFooter = document.createElement("div");
