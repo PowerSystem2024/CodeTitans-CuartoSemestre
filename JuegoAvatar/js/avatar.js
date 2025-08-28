@@ -98,6 +98,12 @@ function ataqueAleatorioEnemigo() {
   return ataques[(Math.floor(Math.random() * ataques.length))];
 }
 
+function renderizarVidas() {
+  const corazon = '<img src="assets/heart1.png" alt="vida" style="width:32px;height:32px;margin:2px;">';
+  document.getElementById("vidas-jugador").innerHTML = corazon.repeat(vidasJugador);
+  document.getElementById("vidas-enemigo").innerHTML = corazon.repeat(vidasEnemigo);
+}
+
 function combate(ataqueJugador, ataqueEnemigo) {
   if (juegoTerminado) {
     return "";
@@ -121,8 +127,7 @@ function combate(ataqueJugador, ataqueEnemigo) {
     resultado = "PERDISTE";
   }
 
-  document.getElementById("vidas-jugador").innerText = vidasJugador;
-  document.getElementById("vidas-enemigo").innerText = vidasEnemigo;
+  renderizarVidas(); // <-- Actualiza los corazones
 
   if (vidasEnemigo === 0 || vidasJugador === 0) {
     revisarVidas();
@@ -220,27 +225,26 @@ function reiniciarJuego() {
   vidasEnemigo = 3;
   juegoTerminado = false;
   personajeSeleccionado = "";
-  
-  document.getElementById("vidas-jugador").innerText = vidasJugador;
-  document.getElementById("vidas-enemigo").innerText = vidasEnemigo;
-  
+
+  renderizarVidas(); // <-- Inicializa los corazones
+
   btnPuño.disabled = false;
   btnPatada.disabled = false;
   btnBarrida.disabled = false;
-  
+
   document.getElementById("personaje-jugador").innerText = "";
   document.getElementById("personaje-enemigo").innerText = "";
   document.getElementById("mensajes").innerHTML = "";
-  
+
   // 🔄 limpiar selección de botones
   document.querySelectorAll(".personaje").forEach((btn) =>
     btn.classList.remove("seleccionado")
-);
+  );
 
-document.getElementById("inicio").style.display = "flex";
-document.getElementById("seleccionar-personaje").style.display = "none";
-document.getElementById("seleccionar-ataque").style.display = "none";
-document.getElementById("mensajes").style.display = "none";
-document.getElementById("reiniciar").style.display = "none";
+  document.getElementById("inicio").style.display = "flex";
+  document.getElementById("seleccionar-personaje").style.display = "none";
+  document.getElementById("seleccionar-ataque").style.display = "none";
+  document.getElementById("mensajes").style.display = "none";
+  document.getElementById("reiniciar").style.display = "none";
 }
 
