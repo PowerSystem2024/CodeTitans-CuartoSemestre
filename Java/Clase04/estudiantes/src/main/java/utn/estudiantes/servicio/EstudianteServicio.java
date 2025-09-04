@@ -18,12 +18,20 @@ public class EstudianteServicio implements IEstudianteServicio {
         // Lógica para listar todos los estudiantes
         List<Estudiante> estudiantes = estudianteRepositorio.findAll();
         return estudiantes;
+
+        // Forma mas avanzada
+        // return estudianteRepositorio.findAll();
     }
 
     @Override
     public Estudiante buscarEstudiantePorId(Integer idEstudiante) {
         // Lógica para buscar un estudiante por su ID
-        return estudianteRepositorio.findById(idEstudiante).orElse(null);
+        // Forma basica, tiene el mismo resultado que la forma avanzada
+        Estudiante estudiante = estudianteRepositorio.findById(idEstudiante).orElse(null);
+        return estudiante;
+
+        // Esta forma es mas avanzada y maneja mejor el Optional
+        // return estudianteRepositorio.findById(idEstudiante).orElse(null);
     }
 
     @Override
