@@ -29,7 +29,7 @@ public class EstudiantesApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		logger.info("Ejecutando el metodo run de Spring Boot...");
+		logger.info(nl + "Ejecutando el metodo run de Spring Boot..." + nl);
 
 	}
 
