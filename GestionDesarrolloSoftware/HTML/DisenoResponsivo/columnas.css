@@ -4,6 +4,7 @@ padding:0px;
 list-style: none;
 text-decoration: none;
 font-family: sans-serif;
+box-sizing: border-box;
 }
 
 .contenedor {
@@ -18,8 +19,29 @@ position: relative;
 margin:auto;
 width:100%;
 height: auto;
+clear:both;
+display: table;
 }
 
-.col-12 {
-width:100%,
+[class*="col-"] {
+float: left;
+border: 1px solid black;
+padding: 20px;
 }
+
+.col-log-2 {
+width: 16.66%;
+}
+
+.col-log-8 {
+width: 66.66%;
+}
+
+.col-6{
+width:50%;
+}
+
+.col-4 {
+width:33.333333333%;
+}
+
