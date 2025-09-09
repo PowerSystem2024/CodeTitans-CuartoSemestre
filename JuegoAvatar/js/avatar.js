@@ -1,3 +1,5 @@
+import { Personaje } from "./personaje.js";
+
 const btnJugar = document.getElementById("btn-jugar");
 const btnPersonajeJugador = document.getElementById("btn-personaje");
 const btnPuño = document.getElementById("btn-puño");
@@ -16,16 +18,37 @@ let seleccionarAtaque = document.getElementById("seleccionar-ataque")
 let mensajes = document.getElementById("mensajes")
 let reiniciar = document.getElementById("reiniciar")
 
-//Arrays de Personajes
-const personajes = ["Zuko", "Katara", "Toph", "Aang"];
-//Arrays de Ataques
+// Variables para los personajes y ataques
+let personajeEnemigo = null;
 const ataques = ["puño", "patada", "barrida"];
+const personajes = [
+  { nombre: "Zuko", imagen: "assets/zuko.webp" },
+  { nombre: "Katara", imagen: "assets/katara.webp" },
+  { nombre: "Toph", imagen: "assets/toph.webp" },
+  { nombre: "Aang", imagen: "assets/aang.webp" }
+];
+
+// Función para crear una nueva instancia de Personaje por nombre
+function crearPersonajePorNombre(nombre) {
+  switch (nombre.toLowerCase()) {
+    case "zuko":
+      return new Personaje("Zuko", "assets/zuko.webp", 3, ataques);
+    case "katara":
+      return new Personaje("Katara", "assets/katara.webp", 3, ataques);
+    case "toph":
+      return new Personaje("Toph", "assets/toph.webp", 3, ataques);
+    case "aang":
+      return new Personaje("Aang", "assets/aang.webp", 3, ataques);
+    default:
+      return null;
+  }
+}
 
 // Variables para el conteo
 let triunfos = 0;
 let derrotas = 0;
-let vidasJugador = 3;
-let vidasEnemigo = 3;
+//let vidasJugador = 3;
+//let vidasEnemigo = 3;
 let juegoTerminado = false; // para controlar el estado del juego
 let personajeSeleccionado = ""; // guardamos el personaje elegido
 
@@ -46,7 +69,8 @@ botonesPersonaje.forEach((btn) => {
     botonesPersonaje.forEach((b) => b.classList.remove("seleccionado"));
     // marcar el nuevo
     btn.classList.add("seleccionado");
-    personajeSeleccionado = btn.dataset.personaje;
+    const nombre = btn.dataset.personaje;
+    personajeSeleccionado = crearPersonajePorNombre(nombre);
     console.log("Personaje elegido:", personajeSeleccionado);
   });
 });
@@ -89,8 +113,10 @@ function mostrarReiniciar() {
 }
 
 // Función para elegir aleatoriamente el personaje del enemigo
-function aleatoria() {
-  return personajes[(Math.floor(Math.random() * personajes.length))];
+function enemigoAleatorio() {
+  const nombresDisponibles = ["zuko", "katara", "toph", "aang"];
+  const nombreEnemigoAleatorio = nombresDisponibles[Math.floor(Math.random() * nombresDisponibles.length)];
+  return crearPersonajePorNombre(nombreEnemigoAleatorio);
 }
 
 // Función para elegir ataque aleatorio del enemigo
@@ -100,8 +126,8 @@ function ataqueAleatorioEnemigo() {
 
 function renderizarVidas() {
   const corazon = '<img src="assets/heart1.png" alt="vida" style="width:32px;height:32px;margin:2px;">';
-  document.getElementById("vidas-jugador").innerHTML = corazon.repeat(vidasJugador);
-  document.getElementById("vidas-enemigo").innerHTML = corazon.repeat(vidasEnemigo);
+  document.getElementById("vidas-jugador").innerHTML = corazon.repeat(personajeSeleccionado?.vidas || 0);
+  document.getElementById("vidas-enemigo").innerHTML = corazon.repeat(personajeEnemigo?.vidas || 0);
 }
 
 function combate(ataqueJugador, ataqueEnemigo) {
@@ -114,22 +140,22 @@ function combate(ataqueJugador, ataqueEnemigo) {
   if (ataqueEnemigo === ataqueJugador) {
     resultado = "EMPATE";
   } else if (ataqueJugador === "puño" && ataqueEnemigo === "barrida") {
-    vidasEnemigo--;
+    personajeEnemigo.perderVida();
     resultado = "GANASTE";
   } else if (ataqueJugador === "patada" && ataqueEnemigo === "puño") {
-    vidasEnemigo--;
+    personajeEnemigo.perderVida();
     resultado = "GANASTE";
   } else if (ataqueJugador === "barrida" && ataqueEnemigo === "patada") {
-    vidasEnemigo--;
+    personajeEnemigo.perderVida();
     resultado = "GANASTE";
   } else {
-    vidasJugador--;
+    personajeSeleccionado.perderVida();
     resultado = "PERDISTE";
   }
 
   renderizarVidas(); // <-- Actualiza los corazones
 
-  if (vidasEnemigo === 0 || vidasJugador === 0) {
+  if (personajeEnemigo.vidas === 0 || personajeSeleccionado.vidas === 0) {
     revisarVidas();
   }
 
@@ -138,10 +164,10 @@ function combate(ataqueJugador, ataqueEnemigo) {
 
 // Función para revisar vidas y determinar ganador
 function revisarVidas() {
-  if (vidasEnemigo === 0) {
+  if (personajeEnemigo.vidas === 0) {
     juegoTerminado = true;
     mostrarMensajeFinal("¡GANASTE EL JUEGO! 🎉 Has derrotado al enemigo");
-  } else if (vidasJugador === 0) {
+  } else if (personajeSeleccionado.vidas === 0) {
     juegoTerminado = true;
     mostrarMensajeFinal("¡PERDISTE EL JUEGO! 😞 El enemigo te ha derrotado");
   }
@@ -164,28 +190,29 @@ function mostrarMensajeFinal(mensaje) {
 }
 
 function seleccionarPersonajeJugador() {
-  if (personajeSeleccionado === "") {
+  if (!personajeSeleccionado) {
     alert("Debes seleccionar un personaje");
     return;
   }
   
-  // Renderizar carta del personaje jugador
+  // Renderizar carta del personaje jugador (ya es una instancia creada en el click)
   document.getElementById("personaje-jugador").innerHTML = `
-  <div class="personaje">
-  <img src="assets/${personajeSeleccionado.toLowerCase()}.webp" alt="${personajeSeleccionado}">
-  <p>${personajeSeleccionado}</p>
-  </div>
+    <div class="personaje">
+      <img src="${personajeSeleccionado.imagen}" alt="${personajeSeleccionado.nombre}">
+      <p>${personajeSeleccionado.nombre}</p>
+    </div>
   `;
-  
-  // Seleccionar personaje enemigo
-  const personajeEnemigo = aleatoria();
+
+  // Seleccionar personaje enemigo como nueva instancia aleatoria
+  personajeEnemigo = enemigoAleatorio();
   document.getElementById("personaje-enemigo").innerHTML = `
   <div class="personaje">
-  <img src="assets/${personajeEnemigo.toLowerCase()}.webp" alt="${personajeEnemigo}">
-  <p>${personajeEnemigo}</p>
+  <img src="${personajeEnemigo.imagen}" alt="${personajeEnemigo.nombre}">
+  <p>${personajeEnemigo.nombre}</p>
   </div>
   `;
   
+  renderizarVidas();
   mostrarSeccionAtaques();
 }
 
@@ -221,11 +248,10 @@ function ataqueBarrida() {
 
 //Función para reiniciar el juego
 function reiniciarJuego() {
-  vidasJugador = 3;
-  vidasEnemigo = 3;
+  // limpiar estado
   juegoTerminado = false;
-  personajeSeleccionado = "";
-
+  personajeSeleccionado = null;
+  personajeEnemigo = null;
   renderizarVidas(); // <-- Inicializa los corazones
 
   btnPuño.disabled = false;
@@ -248,3 +274,4 @@ function reiniciarJuego() {
   document.getElementById("reiniciar").style.display = "none";
 }
 
+window.toggleReglas = toggleReglas;
