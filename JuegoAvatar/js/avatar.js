@@ -21,12 +21,6 @@ let reiniciar = document.getElementById("reiniciar")
 // Variables para los personajes y ataques
 let personajeEnemigo = null;
 const ataques = ["puño", "patada", "barrida"];
-const personajes = [
-  { nombre: "Zuko", imagen: "assets/zuko.webp" },
-  { nombre: "Katara", imagen: "assets/katara.webp" },
-  { nombre: "Toph", imagen: "assets/toph.webp" },
-  { nombre: "Aang", imagen: "assets/aang.webp" }
-];
 
 // Función para crear una nueva instancia de Personaje por nombre
 function crearPersonajePorNombre(nombre) {
