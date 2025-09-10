@@ -19,6 +19,7 @@ let mensajes = document.getElementById("mensajes")
 let reiniciar = document.getElementById("reiniciar")
 
 // Variables para los personajes y ataques
+let personajeSeleccionado = ""; 
 let personajeEnemigo = null;
 const ataques = ["puño", "patada", "barrida"];
 
@@ -26,13 +27,13 @@ const ataques = ["puño", "patada", "barrida"];
 function crearPersonajePorNombre(nombre) {
   switch (nombre.toLowerCase()) {
     case "zuko":
-      return new Personaje("Zuko", "assets/zuko.webp", 3, ataques);
+      return new Personaje("Zuko", "assets/zuko.webp", 3);
     case "katara":
-      return new Personaje("Katara", "assets/katara.webp", 3, ataques);
+      return new Personaje("Katara", "assets/katara.webp", 3);
     case "toph":
-      return new Personaje("Toph", "assets/toph.webp", 3, ataques);
+      return new Personaje("Toph", "assets/toph.webp", 3);
     case "aang":
-      return new Personaje("Aang", "assets/aang.webp", 3, ataques);
+      return new Personaje("Aang", "assets/aang.webp", 3);
     default:
       return null;
   }
@@ -44,7 +45,7 @@ let derrotas = 0;
 //let vidasJugador = 3;
 //let vidasEnemigo = 3;
 let juegoTerminado = false; // para controlar el estado del juego
-let personajeSeleccionado = ""; // guardamos el personaje elegido
+
 
 
 // Eventos

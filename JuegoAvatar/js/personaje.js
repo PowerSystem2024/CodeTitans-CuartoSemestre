@@ -1,9 +1,8 @@
 export class Personaje {
-    constructor(nombre, imagen, vidas = 3, ataques = []) {
+    constructor(nombre, imagen, vidas = 3) {
         this.nombre = nombre;
         this.imagen = imagen;
         this.vidas = vidas;
-        this.ataques = ataques;
     }
 
     perderVida() {
