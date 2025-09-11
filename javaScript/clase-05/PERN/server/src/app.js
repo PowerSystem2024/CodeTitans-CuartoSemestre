@@ -19,8 +19,8 @@ app.use(express.urlencoded({ extended: false }));
 app.get("/", (req, res) =>
   res.json({ message: "Bienvenidos a nuestro proyecto" })
 );
-app.use(tasksRoutes);
-app.use(authRoutes);
+app.use("/api", tasksRoutes);
+app.use("/api", authRoutes);
 
 // Middleware para manejar errores
 app.use((err, req, res, next) => {
