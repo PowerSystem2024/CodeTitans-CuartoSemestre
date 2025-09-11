@@ -1,7 +1,8 @@
 //Aqui va estar el codigo del servidor de express
-
 import express from "express";
 import morgan from "morgan";
+import tasksRoutes from "./router/tasks.routes.js";
+import authRoutes from "./router/auth.routes.js";
 
 // Exportamos e instanciamos la app de express
 const app = express();
@@ -18,6 +19,8 @@ app.use(express.urlencoded({ extended: false }));
 app.get("/", (req, res) =>
   res.json({ message: "Bienvenidos a nuestro proyecto" })
 );
+app.use(tasksRoutes);
+app.use(authRoutes);
 
 // Middleware para manejar errores
 app.use((err, req, res, next) => {
