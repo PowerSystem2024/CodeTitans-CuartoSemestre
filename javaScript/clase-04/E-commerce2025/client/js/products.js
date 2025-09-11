@@ -1,0 +1,51 @@
+const products = [
+  {
+    id: 1,
+    productName: "Cafetera Moulinex Dolce Gusto Edited",
+    price: 50000,
+    quantity: 1,
+    img: "../media/assets/Cafetera.jpg",
+  },
+  {
+    id: 2,
+    productName: "Heladera no frost Whirlpool WRM45A",
+    price: 47900,
+    quantity: 1,
+    img: "../media/assets/Heladera.jpg",
+  },
+  {
+    id: 3,
+    productName: "Nikon Reflex D3500 - Kit",
+    price: 32000,
+    quantity: 1,
+    img: "../media/assets/CamaraNikon.jpg",
+  },
+  {
+    id: 4,
+    productName: "Notebook HP 15s-eq2025la",
+    price: 150000,
+    quantity: 1,
+    img: "../media/assets/NoteHP15.jpg",
+  },
+  {
+    id: 5,
+    productName: "Smart TV Samsung UHD 4K",
+    price: 80000,
+    quantity: 1,
+    img: "../media/assets/TVSamsungSmart.jpg",
+  },
+  {
+    id: 6,
+    productName: "Smartphone Samsung Galaxy A32",
+    price: 45000,
+    quantity: 1,
+    img: "../media/assets/A32.jpg",
+  },
+  {
+    id: 7,
+    productName: "Reloj Casio Retro Calculadora Ca-53w",
+    price: 30000,
+    quantity: 1,
+    img: "../media/assets/relojCasio.jpg",
+  },
+];

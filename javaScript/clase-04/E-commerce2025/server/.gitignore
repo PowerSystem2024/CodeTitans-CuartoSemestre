@@ -1,0 +1,10 @@
+# Ignorar archivos de entorno
+.env
+.env.local
+.env.*.local
+
+# Permitir el ejemplo de entorno
+!.env.example
+
+# Ignorar dependencias de node
+/node_modules
