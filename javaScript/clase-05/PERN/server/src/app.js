@@ -13,5 +13,10 @@ app.get("/", (req, res) =>
   res.json({ message: "Bienvenidos a nuestro proyecto" })
 );
 
+// Middleware para manejar errores
+app.use((err, req, res, next) => {
+  res.status(500).json({ status: "error", message: err.message });
+});
+
 // Exportamos la app para usarla en otros archivos
 export default app;
