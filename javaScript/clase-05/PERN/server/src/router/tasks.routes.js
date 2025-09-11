@@ -1,30 +1,24 @@
 import { Router } from "express";
+import {
+  createTask,
+  deleteTask,
+  getTaskById,
+  getTasks,
+  updateTask,
+} from "../controllers/tasks.controller";
 
 const router = Router();
 
 // Aqui van a estar las rutas relacionadas con las tareas
 
-router.get("/tasks", (req, res) => res.send("Obteniendo tareas"));
+router.get("/tasks", getTasks);
 
-router.get("/tasks/:id", (req, res) =>
-  res.send("Obteniendo tarea con ID: " + req.params.id)
-);
+router.get("/tasks/:id", getTaskById);
 
-router.post("/tasks", (req, res) =>
-  res.send("Creando tarea: " + JSON.stringify(req.body))
-);
+router.post("/tasks", createTask);
 
-router.put("/tasks/:id", (req, res) =>
-  res.send(
-    "Actualizando tarea con ID: " +
-      req.params.id +
-      ", Nuevos datos: " +
-      JSON.stringify(req.body)
-  )
-);
+router.put("/tasks/:id", updateTask);
 
-router.delete("/tasks/:id", (req, res) =>
-  res.send("Eliminando tarea con ID: " + req.params.id)
-);
+router.delete("/tasks/:id", deleteTask);
 
 export default router;

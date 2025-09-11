@@ -1,19 +1,21 @@
 import { Router } from "express";
+import {
+  getProfile,
+  login,
+  logout,
+  register,
+} from "../controllers/auth.controller";
 
 const router = Router();
 
 // Aqui van a estar las rutas relacionadas con la autenticación
 
-router.post("/login", (req, res) =>
-  res.send("Iniciando sesión con datos: " + JSON.stringify(req.body))
-);
+router.post("/login", login);
 
-router.post("/register", (req, res) =>
-  res.send("Registrando usuario con exito: " + JSON.stringify(req.body))
-);
+router.post("/register", register);
 
-router.post("/logout", (req, res) => res.send("Cerrando sesión"));
+router.post("/logout", logout);
 
-router.get("/profile", (req, res) => res.send("Obteniendo perfil de usuario"));
+router.get("/profile", getProfile);
 
 export default router;
