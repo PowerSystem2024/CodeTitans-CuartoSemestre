@@ -9,6 +9,12 @@ const app = express();
 //usamos morgan para ver las peticiones por consola
 app.use(morgan("dev"));
 
+// Para que el servidor entienda JSON
+app.use(express.json());
+
+// Para que el servidor entienda datos de formularios
+app.use(express.urlencoded({ extended: false }));
+
 app.get("/", (req, res) =>
   res.json({ message: "Bienvenidos a nuestro proyecto" })
 );
