@@ -1,5 +1,5 @@
 export class Personaje {
-    constructor(nombre, imagen, vidas = 3) {
+    constructor(nombre, imagen, vidas) {
         this.nombre = nombre;
         this.imagen = imagen;
         this.vidas = vidas;
