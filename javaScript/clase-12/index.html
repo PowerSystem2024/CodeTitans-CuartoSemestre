@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activar bomba</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="bomb icon" href="bombIcon.png" />
+</head>
+<body>
+    <div class="grid"></div>
+
+    <div class="warning"></div>
+
+    <div class="base">
+        <button id="activate">
+            <span></span>
+        </button>
+    </div>
+
+    <div class="box opened" id="cover">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <span></span><span></span>
+    </div>
+
+    <div class="hinges"></div>
+
+    <div class="text">
+        CODETITANS
+    </div>
+
+    <div id="panel">
+        <div id="msg">Te Dijimos Que No Toques El Boton</div>
+        <div id="time">9</div>
+        <span id="abort">ABORTAR</span>
+        <span id="detonate">DETONAR</span>
+    </div>
+
+    <div id="turn-off"></div>
+    <div id="closing"></div>
+
+    <div id="restart"><button id="reload"></button></div>
+
+    <div id="mute"></div>
+
+    <audio id="alarm" src="sounds/alarm.mp3"></audio>
+    <audio id="alarm2" src="sounds/explosion.mp3"></audio>
+
+    <script src="app.js"></script>
+</body>
+</html>
